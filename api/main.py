@@ -71,8 +71,11 @@ def print_all_model():
     for i in range(len(all_model_ml)):
         print(all_model_ml[i].model, flush=True)
         print(all_model_ml[i].last_time, flush=True)
+    check_cuda_or_cpu = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"cuda : {check_cuda_or_cpu}")
     print("{} Model allocate memory : {} Gb".format(
         len(all_model_ml), torch.cuda.memory_allocated()/1024**3), flush=True)
+
 
 
 def releast_by_time(thread_lock=None):

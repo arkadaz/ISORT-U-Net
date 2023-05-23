@@ -7,7 +7,7 @@ services:
     build: ./api
     # map port local port:container port
     ports:
-      - '192.168.1.102:8000:80'
+      - '5050:80'
     volumes:
       - ./api:/app
   db:
