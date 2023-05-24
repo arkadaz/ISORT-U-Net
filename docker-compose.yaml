@@ -1,20 +1,28 @@
 version: '3'
 services:
   api:
+    image: isort-u-net-api-mongo
+    deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                count: 1
+                capabilities: [gpu]
     # restart service when service fail
     restart: always
     # build Dockerfile in folder /api
     build: ./api
     # map port local port:container port
     ports:
-      - '5050:80'
+      - "5050:80"
     volumes:
       - ./api:/app
   db:
     image: mongo:latest
     restart: always
     ports:
-      - 27017:27017
+      - "27017:27017"
     #    environment:
     #      MONGO_INITDB_ROOT_USERNAME: root
     #      MONGO_INITDB_ROOT_PASSWORD: very-strong-db-password
